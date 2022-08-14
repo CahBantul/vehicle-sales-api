@@ -19,4 +19,10 @@ class VehicleService
   {
     return $this->vehicleRepository->getAll();
   }
+
+  public function count()
+  {
+    $vehicles = $this->getAll();
+    return count($vehicles);
+  }
 }

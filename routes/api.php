@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/', [VehicleController::class, "index"]);
+Route::get('/count', [VehicleController::class, "count"]);
