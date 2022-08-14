@@ -10,5 +10,6 @@ class BaseModelVehicle extends Model
     use HasFactory;
     
     protected $connection = "mongodb";  
+    protected $collection = "motors";
     protected $fillable = ["year", "price", "color"];
 }
