@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Models\BaseModelVehicle;
+use App\Models\Car;
 
 class VehicleRepository 
 {
-  protected $vehicles;
+  protected $car;
 
-  public function __construct(BaseModelVehicle $vehicles)
+  public function __construct(Car $car)
   {
-    $this->vehicles = $vehicles;
+    $this->car = $car;
   }
 
   public function getAll()
   {
-    $vehicles = BaseModelVehicle::all();
-    return $vehicles;
+    $car = Car::all();
+    return $car;
   }
 }
