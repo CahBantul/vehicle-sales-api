@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\CarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,11 @@ Route::prefix('vehicle')->group(function (){
   Route::get('/', [VehicleController::class, "index"]);
   Route::get('/count', [VehicleController::class, "count"]);
   Route::get('/stock', [VehicleController::class, "stock"]);
+});
+
+Route::prefix('car')->group(function (){
+  Route::get('/', [CarController::class, "index"]);
+  Route::get('/{id}', [CarController::class, "show"]);
+  Route::get('/count', [CarController::class, "count"]);
+  Route::get('/stock', [CarController::class, "stock"]);
 });
