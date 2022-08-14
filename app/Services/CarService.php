@@ -15,12 +15,6 @@ class CarService
     $this->carRepository = $carRepository;
   }
 
-  protected function soldFilter($key, $value) {
-    if (isset($key->isSoldOut) && $key->isSoldOut == $value) {
-      return $key;
-    }
-  }
-
   public function getAll()
   {
     return $this->carRepository->getAll();
@@ -35,12 +29,12 @@ class CarService
   public function stock()
   {
     $cars = $this->getAll();
-    $stockVehicle = $cars->filter(function($value){
-      if (isset($value->isSoldOut) && $value->isSoldOut == false) {
-        return $value;
+    $stockCar = $cars->filter(function($car){
+      if (isset($car->isSoldOut) && $car->isSoldOut == false) {
+        return $car;
       }
     });
-    return $stockVehicle;
+    return $stockCar;
   }
 
   public function findCarById($id)
@@ -52,11 +46,11 @@ class CarService
   public function sold()
   {
     $cars = $this->getAll();
-    $stockVehicle = $cars->filter(function($value){
-      if (isset($value->isSoldOut) && $value->isSoldOut == true) {
-        return $value;
+    $carSold = $cars->filter(function($car){
+      if (isset($car->isSoldOut) && $car->isSoldOut == true) {
+        return $car;
       }
     });
-    return $stockVehicle;
+    return $carSold;
   }
 }
