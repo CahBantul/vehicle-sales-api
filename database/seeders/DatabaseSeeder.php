@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Car;
 use Illuminate\Database\Seeder;
 use App\Models\Motor;
+use App\Models\Car;
 
 class DatabaseSeeder extends Seeder
 {
