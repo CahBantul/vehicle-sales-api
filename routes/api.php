@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\MotorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,12 @@ Route::prefix('car')->group(function (){
   Route::get('/stock', [CarController::class, "stock"]);
   Route::get('/sold', [CarController::class, "sold"]);
   Route::get('/{id}', [CarController::class, "show"]);
+});
+
+Route::prefix('motor')->group(function (){
+  Route::get('/', [MotorController::class, "index"]);
+  Route::get('/count', [MotorController::class, "count"]);
+  Route::get('/stock', [MotorController::class, "stock"]);
+  Route::get('/sold', [MotorController::class, "sold"]);
+  Route::get('/{id}', [MotorController::class, "show"]);
 });
