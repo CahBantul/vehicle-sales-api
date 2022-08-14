@@ -24,7 +24,7 @@ Route::prefix('vehicle')->group(function (){
 
 Route::prefix('car')->group(function (){
   Route::get('/', [CarController::class, "index"]);
-  Route::get('/{id}', [CarController::class, "show"]);
   Route::get('/count', [CarController::class, "count"]);
   Route::get('/stock', [CarController::class, "stock"]);
+  Route::get('/{id}', [CarController::class, "show"]);
 });
