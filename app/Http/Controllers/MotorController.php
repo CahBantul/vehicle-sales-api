@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Exception;
 use App\Services\MotorService;
 
 
@@ -19,26 +19,61 @@ class MotorController extends Controller
   
     public function index()
     {
-      return $this->motorService->getAll();
-    }
+      try {
+        $motors = $this->motorService->getAll();
+        
+        if(!$motors) {
+            return $this->successResponse(null, "Failed to load Data");
+        }
 
-    public function count()
-    {
-        return $this->motorService->count();
+        return $this->successResponse($motors, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
 
     public function stock()
     {
-        return $this->motorService->stock();
+      try {
+        $stock = $this->motorService->stock();
+        
+        if(!$stock) {
+          return $this->successResponse(null, "Failed to load Data");
+      }
+      
+      return $this->successResponse($stock, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
 
     public function sold()
     {
-        return $this->motorService->sold();
+      try {
+        $sold = $this->motorService->sold();
+        
+        if(!$sold) {
+          return $this->successResponse(null, "Failed to load Data");
+      }
+      
+      return $this->successResponse($sold, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
     
     public function show($id)
     {
-        return $this->motorService->findCarById($id);
+      try {
+        $motor = $this->motorService->findCarById($id);
+        
+        if(!$motor) {
+          return $this->successResponse(null, "Failed to load Data");
+      }
+      
+      return $this->successResponse($motor, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
 }

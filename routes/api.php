@@ -19,13 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('vehicle')->group(function (){
   Route::get('/', [VehicleController::class, "index"]);
-  Route::get('/count', [VehicleController::class, "count"]);
   Route::get('/stock', [VehicleController::class, "stock"]);
+  Route::get('/sold', [VehicleController::class, "sold"]);
 });
 
 Route::prefix('car')->group(function (){
   Route::get('/', [CarController::class, "index"]);
-  Route::get('/count', [CarController::class, "count"]);
   Route::get('/stock', [CarController::class, "stock"]);
   Route::get('/sold', [CarController::class, "sold"]);
   Route::get('/{id}', [CarController::class, "show"]);
@@ -33,7 +32,6 @@ Route::prefix('car')->group(function (){
 
 Route::prefix('motor')->group(function (){
   Route::get('/', [MotorController::class, "index"]);
-  Route::get('/count', [MotorController::class, "count"]);
   Route::get('/stock', [MotorController::class, "stock"]);
   Route::get('/sold', [MotorController::class, "sold"]);
   Route::get('/{id}', [MotorController::class, "show"]);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Exception;
 use App\Services\VehicleService;
 
 
@@ -19,16 +19,47 @@ class VehicleController extends Controller
   
     public function index()
     {
-      return $this->vehicleService->getAll();
-    }
-
-    public function count()
-    {
-        return $this->vehicleService->count();
+      try {
+        $vehicles = $this->vehicleService->getAll();
+        
+        if(!$vehicles) {
+          return $this->successResponse(null, "Failed to load Data");
+      }
+      
+      return $this->successResponse($vehicles, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
+ 
     }
 
     public function stock()
     {
-        return $this->vehicleService->stock();
+      try {
+        $stock = $this->vehicleService->stock();
+        
+        if(!$stock) {
+          return $this->successResponse(null, "Failed to load Data");
+      }
+      
+      return $this->successResponse($stock, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
+    }
+
+    public function sold()
+    {
+      try {
+        $sold = $this->vehicleService->sold();
+        
+        if(!$sold) {
+          return $this->successResponse(null, "Failed to load Data");
+      }
+      
+      return $this->successResponse($sold, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
 }

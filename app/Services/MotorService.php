@@ -20,12 +20,6 @@ class MotorService
     return $this->motorRepository->getAll();
   }
 
-  public function count()
-  {
-    $motors = $this->getAll();
-    return count($motors);
-  }
-
   public function stock()
   {
     $motors = $this->getAll();

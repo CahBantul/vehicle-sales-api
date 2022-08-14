@@ -20,17 +20,22 @@ class VehicleService
     return $this->vehicleRepository->getAll();
   }
 
-  public function count()
-  {
-    $vehicles = $this->getAll();
-    return count($vehicles);
-  }
-
   public function stock()
   {
     $vehicles = $this->getAll();
-    $stockVehicle = $vehicles->filter(function($value, $key){
+    $stockVehicle = $vehicles->filter(function($value){
       if (isset($value->isSoldOut) && $value->isSoldOut == false) {
+        return $value;
+      }
+    });
+    return $stockVehicle;
+  }
+
+  public function sold()
+  {
+    $vehicles = $this->getAll();
+    $stockVehicle = $vehicles->filter(function($value){
+      if (isset($value->isSoldOut) && $value->isSoldOut == true) {
         return $value;
       }
     });

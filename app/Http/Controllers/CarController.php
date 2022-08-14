@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Exception;
 use App\Services\CarService;
 
 
@@ -19,26 +19,61 @@ class CarController extends Controller
   
     public function index()
     {
-      return $this->carService->getAll();
-    }
+      try {
+        $cars = $this->carService->getAll();
+        
+        if(!$cars) {
+            return $this->successResponse(null, "Failed to load Data");
+        }
 
-    public function count()
-    {
-        return $this->carService->count();
+        return $this->successResponse($cars, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
 
     public function stock()
     {
-        return $this->carService->stock();
+      try {
+        $stock = $this->carService->stock();
+        
+        if(!$stock) {
+            return $this->successResponse(null, "Failed to load Data");
+        }
+
+        return $this->successResponse($stock, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
 
     public function sold()
     {
-        return $this->carService->sold();
+      try {
+        $sold = $this->carService->sold();
+        
+        if(!$sold) {
+            return $this->successResponse(null, "Failed to load Data");
+        }
+
+        return $this->successResponse($sold, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
     
     public function show($id)
     {
-        return $this->carService->findCarById($id);
+      try {
+        $car = $this->carService->findCarById($id);
+        
+        if(!$car) {
+            return $this->successResponse(null, "Failed to load Data");
+        }
+
+        return $this->successResponse($car, "Success");
+      } catch (Exception $err) {
+        return $this->errorResponse($err->getMessage(), $err->getCode());
+      }
     }
 }

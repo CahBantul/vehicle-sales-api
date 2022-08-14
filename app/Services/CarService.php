@@ -20,12 +20,6 @@ class CarService
     return $this->carRepository->getAll();
   }
 
-  public function count()
-  {
-    $cars = $this->getAll();
-    return count($cars);
-  }
-
   public function stock()
   {
     $cars = $this->getAll();
