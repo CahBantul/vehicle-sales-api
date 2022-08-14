@@ -15,6 +15,12 @@ class CarService
     $this->carRepository = $carRepository;
   }
 
+  protected function soldFilter($key, $value) {
+    if (isset($key->isSoldOut) && $key->isSoldOut == $value) {
+      return $key;
+    }
+  }
+
   public function getAll()
   {
     return $this->carRepository->getAll();
@@ -41,5 +47,16 @@ class CarService
   {
     $car = $this->carRepository->findById($id);
     return $car;
+  }
+
+  public function sold()
+  {
+    $cars = $this->getAll();
+    $stockVehicle = $cars->filter(function($value){
+      if (isset($value->isSoldOut) && $value->isSoldOut == true) {
+        return $value;
+      }
+    });
+    return $stockVehicle;
   }
 }

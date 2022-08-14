@@ -26,5 +26,6 @@ Route::prefix('car')->group(function (){
   Route::get('/', [CarController::class, "index"]);
   Route::get('/count', [CarController::class, "count"]);
   Route::get('/stock', [CarController::class, "stock"]);
+  Route::get('/sold', [CarController::class, "sold"]);
   Route::get('/{id}', [CarController::class, "show"]);
 });

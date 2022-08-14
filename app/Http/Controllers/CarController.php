@@ -31,6 +31,11 @@ class CarController extends Controller
     {
         return $this->carService->stock();
     }
+
+    public function sold()
+    {
+        return $this->carService->sold();
+    }
     
     public function show($id)
     {
