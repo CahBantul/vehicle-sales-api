@@ -19,5 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', [VehicleController::class, "index"]);
-Route::get('/count', [VehicleController::class, "count"]);
+Route::prefix('vehicle')->group(function (){
+  Route::get('/', [VehicleController::class, "index"]);
+  Route::get('/count', [VehicleController::class, "count"]);
+  Route::get('/stock', [VehicleController::class, "stock"]);
+});

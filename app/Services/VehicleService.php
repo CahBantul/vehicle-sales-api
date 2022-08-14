@@ -25,4 +25,15 @@ class VehicleService
     $vehicles = $this->getAll();
     return count($vehicles);
   }
+
+  public function stock()
+  {
+    $vehicles = $this->getAll();
+    $stockVehicle = $vehicles->filter(function($value, $key){
+      if (isset($value->isSoldOut) && $value->isSoldOut == false) {
+        return $value;
+      }
+    });
+    return $stockVehicle;
+  }
 }

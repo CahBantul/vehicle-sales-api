@@ -26,4 +26,9 @@ class VehicleController extends Controller
     {
         return $this->vehicleService->count();
     }
+
+    public function stock()
+    {
+        return $this->vehicleService->stock();
+    }
 }
