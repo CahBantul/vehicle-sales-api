@@ -29,7 +29,6 @@ class AuthController extends Controller
             }
                 
             return $this->successResponse($user, "Success");
-            return response($user);
           } catch (Exception $err) {
             return $this->errorResponse($err->getMessage(), $err->getCode());
           }
@@ -43,43 +42,12 @@ class AuthController extends Controller
             return $this->successResponse(null, "Unauthorized");
         }
 
-        return $this->successResponse($token, "Success");
-        // //valid credential
-        // $validator = Validator::make($credentials, [
-        //     'email' => 'required|email',
-        //     'password' => 'required|string|min:6|max:50'
-        // ]);
-        
-        // // return ddd($validator);
-        // //Send failed response if request is not valid
-        // if ($validator->fails()) {
-        //     return response()->json(['error' => $validator->errors()], 200);
-        // }
+        $data = [
+            "access_token" => $token,
+            "token_type" => "bearer"
+        ];
 
-        // //Request is validated
-        // //Crean token
-        // try {
-        //     $token = JWTAuth::attempt($credentials);
-
-        //     if (!$token) {
-        //         return response()->json([
-        //         	'success' => false,
-        //         	'message' => 'Login credentials are invalid.',
-        //         ], 400);
-        //     }
-        // } catch (JWTException $e) {
-    	// return $credentials;
-        //     return response()->json([
-        //         	'success' => false,
-        //         	'message' => 'Could not create token.',
-        //         ], 500);
-        // }
- 	
- 		// //Token created, return with success response and jwt token
-        // return response()->json([
-        //     'success' => true,
-        //     'token' => $token,
-        // ]);
+        return $this->successResponse($data, "Success");
     }
  
     public function logout(Request $request)

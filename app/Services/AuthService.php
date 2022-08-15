@@ -28,13 +28,7 @@ class AuthService
     if ($validator->fails()) {
       return response()->json(['error' => $validator->errors()], 200);
     }
-
-    $data = [
-      'name' => $arr['name'],
-      'email' => $arr['email'],
-      'password' => bcrypt($arr['password'])
-    ];
-
-    return $this->authRepository->register($data);
+    
+    return $this->authRepository->register($arr['name'],$arr['email'],$arr['password']);
   }  
 }
