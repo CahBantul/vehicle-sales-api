@@ -15,11 +15,11 @@ class AuthRepository
     $this->user = $user;
   }
 
-  public function register($arr){
+  public function register($name, $email, $password){
     $user = User::create([
-      'name' => $arr['name'],
-      'email' => $arr['email'],
-      'password' => $arr['password'],
+      'name' => $name,
+      'email' => $email,
+      'password' => bcrypt($password),
     ]);
 
     return $user;
