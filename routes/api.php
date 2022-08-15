@@ -17,22 +17,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('vehicle')->group(function (){
-  Route::get('/', [VehicleController::class, "index"]);
-  Route::get('/stock', [VehicleController::class, "stock"]);
-  Route::get('/sold', [VehicleController::class, "sold"]);
-});
+Route::group(['middleware' => ['jwt.verify']], function(){
+  Route::prefix('vehicle')->group(function (){
+    Route::get('/', [VehicleController::class, "index"]);
+    Route::get('/stock', [VehicleController::class, "stock"]);
+    Route::get('/sold', [VehicleController::class, "sold"]);
+  });
 
-Route::prefix('car')->group(function (){
-  Route::get('/', [CarController::class, "index"]);
-  Route::get('/stock', [CarController::class, "stock"]);
-  Route::get('/sold', [CarController::class, "sold"]);
-  Route::get('/{id}', [CarController::class, "show"]);
-});
+  Route::prefix('car')->group(function (){
+    Route::get('/', [CarController::class, "index"]);
+    Route::get('/stock', [CarController::class, "stock"]);
+    Route::get('/sold', [CarController::class, "sold"]);
+    Route::get('/{id}', [CarController::class, "show"]);
+  });
 
-Route::prefix('motor')->group(function (){
-  Route::get('/', [MotorController::class, "index"]);
-  Route::get('/stock', [MotorController::class, "stock"]);
-  Route::get('/sold', [MotorController::class, "sold"]);
-  Route::get('/{id}', [MotorController::class, "show"]);
+  Route::prefix('motor')->group(function (){
+    Route::get('/', [MotorController::class, "index"]);
+    Route::get('/stock', [MotorController::class, "stock"]);
+    Route::get('/sold', [MotorController::class, "sold"]);
+    Route::get('/{id}', [MotorController::class, "show"]);
+  });
+
 });
