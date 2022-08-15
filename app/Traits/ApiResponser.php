@@ -12,13 +12,13 @@ trait ApiResponser{
 
     protected function successResponse($data, $message = null, $code = 200)
 	{
-		return response()->json([
+   		return response()->json([
       'meta' => 
               [
                 'code'=> $code, 
                 'message' => $message, 
               ],
-      'count' => count($data),
+      'count' => is_countable($data) ? count($data) : 0,
 			'data' => $data
 		], $code);
 	}

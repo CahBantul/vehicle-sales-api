@@ -3,6 +3,7 @@
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\MotorController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/register', [AuthController::class, "register"]);
+Route::post('/login', [AuthController::class, "authenticate"]);
 
 Route::group(['middleware' => ['jwt.verify']], function(){
   Route::prefix('vehicle')->group(function (){
